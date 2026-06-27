@@ -1,0 +1,181 @@
+/* =========================================
+   FOOTER SECTION — PREMIUM DARK AESTHETIC
+   ========================================= */
+
+#footer {
+    position: relative;
+    width: 100%;
+    background-color: #1a1714; /* Tom ultra profundo de marrom/preto */
+    color: #f7f5ed;
+    padding: 120px 0 40px;
+    overflow: hidden;
+    z-index: 5;
+}
+
+/* Letra gigante abstrata no fundo (Marca d'água luxuosa) */
+.footer-bg-letter {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translateY(-50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 45vw;
+    line-height: 0.8;
+    color: rgba(171, 93, 65, 0.03); /* Terracota quase invisível */
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+    will-change: transform;
+}
+
+.footer-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 6vw;
+}
+
+/* Layout Superior (Logo + Links) */
+.footer-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 60px;
+    margin-bottom: 80px;
+}
+
+/* Marca / Logo */
+.footer-brand {
+    max-width: 400px;
+}
+
+.footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: #dca753; /* Dourado suave da marca */
+    margin-bottom: 10px;
+    letter-spacing: 0.02em;
+}
+
+.footer-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #8b9264; /* Verde sálvia */
+}
+
+/* Grid de Links */
+.footer-links {
+    display: flex;
+    gap: 80px;
+    flex-wrap: wrap;
+}
+
+.footer-col {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.footer-col h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(247, 245, 237, 0.4);
+    margin-bottom: 10px;
+}
+
+.footer-link {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.95rem;
+    color: #f7f5ed;
+    text-decoration: none;
+    position: relative;
+    width: fit-content;
+    transition: color 0.4s ease;
+}
+
+/* Sublinhado elegante no hover */
+.footer-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0%;
+    height: 1px;
+    background-color: #ab5d41;
+    transition: width 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.footer-link:hover {
+    color: #ab5d41;
+}
+
+.footer-link:hover::after {
+    width: 100%;
+}
+
+/* Divisória */
+.footer-divider {
+    width: 0%; /* Inicia com 0 para animar via JS */
+    height: 1px;
+    background: rgba(247, 245, 237, 0.1);
+    margin-bottom: 30px;
+}
+
+/* Base do Footer */
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.footer-copyright {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(247, 245, 237, 0.4);
+    letter-spacing: 0.05em;
+}
+
+.footer-back-top {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: #8b9264;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.4s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-back-top:hover {
+    color: #dca753;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+    .footer-top {
+        flex-direction: column;
+        gap: 50px;
+    }
+    
+    .footer-links {
+        gap: 50px;
+        flex-direction: column;
+    }
+    
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}

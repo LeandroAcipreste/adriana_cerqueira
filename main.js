@@ -2,6 +2,7 @@ import { initPreloader } from './src/preLoader/preLoader.js';
 import { initHero } from './src/hero/hero.js';
 import { initAbout } from './src/about/about.js';
 import { initTestimonials } from './src/testimonials/testimonials.js';
+import { initFooter } from './src/footer/footer.js';
 
 // ==========================================
 // INICIALIZAÇÃO CENTRAL (MAIN)
@@ -29,10 +30,12 @@ if (document.readyState === "loading") {
         initHero();
         initAbout();
         initTestimonials();
+        initFooter();
     });
 } else {
     initPreloader();
     initHero();
     initAbout();
     initTestimonials();
+    initFooter();
 }
