@@ -1,0 +1,98 @@
+/* ==========================================================================
+   1. IMPORTAÇÃO DE FONTES (Google Fonts)
+   ========================================================================== */
+/* Título (Nome): Cormorant Garamond - Traz elegância, natureza e sofisticação (Serifa) */
+/* Subtítulo e Texto: Montserrat - Moderna, limpa e espaçada (Sans-Serif) */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
+
+/* ==========================================================================
+   2. IMPORTAÇÃO DE OUTROS ARQUIVOS CSS
+   ========================================================================== */
+@import url('./src/preLoader/preLoader.css');
+@import url('./src/hero/hero.css');
+@import url('./src/about/about.css');
+@import url('./src/testimonials/testimonials.css');
+
+/* ==========================================================================
+   3. VARIÁVEIS GLOBAIS (DESIGN SYSTEM - BASEADO NA LOGO)
+   ========================================================================== */
+:root {
+    /* Cores da Paleta Extraídas da Logo */
+    --bg-color: #f7f5ed;         /* Fundo off-white/creme claro da imagem */
+    --primary: #ab5d41;          /* Terracota/Laranja queimado (Nome e bordas da borboleta) */
+    --secondary: #8b9264;        /* Verde Oliva (Folhas e subtítulo) */
+    --accent: #dca753;           /* Mostarda/Dourado suave (Asa interna) */
+    
+    /* Cores de Texto */
+    --text-dark: #4a4036;        /* Marrom escuro/acinzentado para textos de leitura */
+    --text-light: #f7f5ed;       /* Texto claro para fundos escuros */
+    
+    /* Tipografia */
+    --font-title: 'Cormorant Garamond', serif;
+    --font-subtitle: 'Montserrat', sans-serif;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+/* ==========================================================================
+   4. CONFIGURAÇÕES GLOBAIS DE TELA (RESET E BASE)
+   ========================================================================== */
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 16px;
+    scroll-behavior: smooth;
+    height: auto;
+    overflow-x: hidden; /* Impede scroll horizontal em qualquer seção */
+    max-width: 100%;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    overflow-x: hidden; /* Reforço: impede overflow horizontal de filhos */
+    max-width: 100%;
+    width: 100%;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utilitários Tipográficos Base */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-title);
+    font-weight: 500;
+    color: var(--primary);
+    line-height: 1.2;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--primary);
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: inherit;
+}

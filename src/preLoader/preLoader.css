@@ -1,0 +1,104 @@
+/* ========================================
+   PRELOADER - FRASE PALAVRA POR PALAVRA
+   ======================================== */
+#preloader { 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100vh; 
+    background-color: #f7f5ed; 
+    z-index: 9999; 
+    display: flex; 
+    flex-direction: column;
+    align-items: center; 
+    justify-content: center; 
+    overflow: hidden;
+}
+
+/* 
+   PREMIUM AURA BACKGROUND (Surprise!)
+   Creates a therapeutic, slow-moving glowing orb effect
+*/
+#preloader::before,
+#preloader::after {
+    content: "";
+    position: absolute;
+    width: 50vw;
+    height: 50vw;
+    border-radius: 50%;
+    filter: blur(100px);
+    z-index: 0;
+    opacity: 0.45;
+    animation: auraFloat 12s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: none;
+}
+
+/* Aura Terracota */
+#preloader::before {
+    background: radial-gradient(circle, #ab5d41 0%, transparent 70%);
+    top: -10%;
+    left: -10%;
+}
+
+/* Aura Mostarda / Verde */
+#preloader::after {
+    background: radial-gradient(circle, #dca753 0%, rgba(139, 146, 100, 0.6) 50%, transparent 80%);
+    bottom: -15%;
+    right: -10%;
+    animation-delay: -5s;
+    animation-duration: 15s;
+}
+
+@keyframes auraFloat {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(8vw, 12vh) scale(1.15); }
+    100% { transform: translate(-5vw, -8vh) scale(0.9); }
+}
+
+/* Subtle Film Grain Noise */
+.preloader-noise {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    opacity: 0.05;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Container centralizado para os textos */
+.preloader-content-wrapper {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Título de Boas-vindas */
+.preloader-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(3rem, 6vw, 5rem);
+    color: #ab5d41; /* Terracota */
+    font-weight: 400;
+    margin: 0;
+    opacity: 0; /* Controlado pelo GSAP */
+}
+
+/* Frase de boas-vindas (Subtitle) */
+.preloader-phrase {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    font-style: italic;
+    color: #8b9264; /* Verde Sálvia */
+    font-weight: 400;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.3em;
+}
+
+.preloader-phrase span {
+    opacity: 0;
+    display: inline-block;
+}

@@ -1,0 +1,54 @@
+/* =========================================
+   HERO SECTION
+   ========================================= */
+
+/* Conteúdo principal — oculto até o preloader liberar */
+#main-content {
+    position: relative;
+    z-index: 10;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+/* Vídeo de fundo */
+.hero-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Foto Redonda Flutuante */
+.hero-float-img {
+    position: absolute;
+    z-index: 2;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    bottom: 30px;
+    right: 30px;
+    box-shadow: 0 15px 40px -10px rgba(171, 93, 65, 0.4);
+    animation: floatImg 6s ease-in-out infinite;
+}
+
+@keyframes floatImg {
+    0%   { transform: translateY(0px); }
+    50%  { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}

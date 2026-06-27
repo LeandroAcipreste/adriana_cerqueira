@@ -1,0 +1,311 @@
+/* =========================================
+   ABOUT SECTION — PREMIUM CINEMATIC REVEAL
+   ========================================= */
+
+#about {
+    position: relative;
+    width: 100%;
+    background-color: #f7f5ed;
+    overflow: hidden; /* Contém a letra gigante de fundo */
+    padding: 140px 0 160px;
+}
+
+/* ---- LETRAS GIGANTES DE FUNDO (como o design_system3) ---- */
+.about-bg-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22vw;
+    white-space: nowrap;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(171, 93, 65, 0.08);
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+    will-change: transform;
+    letter-spacing: -0.02em;
+}
+
+/* ---- LAYOUT PRINCIPAL ---- */
+.about-container {
+    position: relative;
+    z-index: 2;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 6vw;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+/* ---- COLUNA ESQUERDA — FOTO ---- */
+.about-photo-col {
+    position: relative;
+}
+
+.about-photo-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 3/4;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 30px 70px -20px rgba(171, 93, 65, 0.25);
+}
+
+.about-photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.08);
+    filter: contrast(1.05) saturate(0.95);
+    will-change: transform;
+    transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* Decoração — linha de canto */
+.about-photo-frame::before {
+    content: '';
+    position: absolute;
+    top: 20px;
+    left: -20px;
+    width: 2px;
+    height: 120px;
+    background: linear-gradient(to bottom, #ab5d41, transparent);
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.4s;
+}
+
+.about-photo-frame::after {
+    content: '';
+    position: absolute;
+    bottom: 20px;
+    right: -20px;
+    width: 120px;
+    height: 2px;
+    background: linear-gradient(to right, transparent, #dca753);
+    z-index: 5;
+    opacity: 0;
+    transition: opacity 0.6s ease 0.6s;
+}
+
+.about-photo-frame.revealed::before,
+.about-photo-frame.revealed::after {
+    opacity: 1;
+}
+
+/* Badge flutuante — anos de experiência */
+.about-badge {
+    position: absolute;
+    bottom: -28px;
+    right: 30px;
+    background: #ffffff;
+    border: 1px solid rgba(171, 93, 65, 0.15);
+    border-radius: 200px;
+    padding: 18px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 15px 40px -10px rgba(171, 93, 65, 0.2);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+    z-index: 10;
+}
+
+.about-badge.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.about-badge-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem;
+    color: #ab5d41;
+    line-height: 1;
+    font-weight: 400;
+}
+
+.about-badge-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #8b9264;
+    margin-top: 4px;
+}
+
+/* ---- COLUNA DIREITA — TEXTO ---- */
+.about-text-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Label superior com linhas decorativas */
+.about-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: #8b9264;
+    margin-bottom: 28px;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.about-label::before {
+    content: '';
+    width: 40px;
+    height: 1px;
+    background: #8b9264;
+}
+
+/* Título grande */
+.about-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.8rem, 4.5vw, 4rem);
+    font-weight: 400;
+    color: #2a2520;
+    line-height: 1.1;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+
+.about-heading em {
+    font-style: italic;
+    color: #ab5d41;
+}
+
+/* Linha decorativa horizontal */
+.about-divider {
+    width: 0;
+    height: 1px;
+    background: linear-gradient(to right, rgba(171, 93, 65, 0.4), transparent);
+    margin-bottom: 36px;
+    transition: width 1.2s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.about-divider.revealed {
+    width: 120px;
+}
+
+/* Parágrafos de texto */
+.about-body {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    color: rgba(42, 37, 32, 0.7);
+    margin-bottom: 22px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Citação (pullquote) */
+.about-quote {
+    position: relative;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-style: italic;
+    color: #ab5d41;
+    border-left: 2px solid rgba(171, 93, 65, 0.25);
+    padding-left: 24px;
+    margin: 36px 0;
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+/* Lista de especialidades */
+.about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 36px;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.about-tag {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: #ab5d41;
+    border: 1px solid rgba(171, 93, 65, 0.25);
+    border-radius: 40px;
+    padding: 8px 20px;
+    transition: all 0.4s ease;
+    cursor: default;
+}
+
+.about-tag:hover {
+    background-color: rgba(171, 93, 65, 0.06);
+    border-color: rgba(171, 93, 65, 0.5);
+}
+
+/* Botão CTA — estilo do design_system3 */
+.about-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: #f7f5ed;
+    background-color: #ab5d41;
+    padding: 16px 36px;
+    border-radius: 50px;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.4s ease, box-shadow 0.4s ease;
+    box-shadow: 0 0 30px rgba(171, 93, 65, 0.3);
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.about-cta:hover {
+    background-color: #2a2520;
+    box-shadow: 0 0 40px rgba(171, 93, 65, 0.4);
+}
+
+.about-cta-arrow {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 1px solid rgba(247, 245, 237, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.4s ease;
+}
+
+.about-cta:hover .about-cta-arrow {
+    transform: translateX(4px);
+}
+
+/* ---- RESPONSIVO ---- */
+@media (max-width: 900px) {
+    .about-container {
+        grid-template-columns: 1fr;
+        gap: 80px;
+    }
+
+    .about-photo-col {
+        max-width: 450px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .about-bg-text {
+        font-size: 30vw;
+    }
+}
