@@ -4,47 +4,43 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 gsap.registerPlugin(ScrollTrigger);
 
 // Função auxiliar para dividir texto preservando as palavras inteiras (evita quebrar no meio)
+// Função auxiliar hiper robusta para separar letras sem sobrepor ou quebrar kerning
 function splitTextNodes(element) {
     if (!element) return;
-    const processNode = (node) => {
-        if (node.nodeType === 3) { // Text node
-            const text = node.nodeValue;
-            if (text.trim() === '') return;
-            
-            const fragment = document.createDocumentFragment();
-            // Divide por espaços mantendo os espaços no array
-            const words = text.split(/(\s+)/);
-            
-            words.forEach(wordStr => {
-                if (wordStr.trim() === '') {
-                    // Mantém os espaços naturais
-                    fragment.appendChild(document.createTextNode(wordStr));
-                } else {
-                    // Envolve a palavra inteira em um bloco para não quebrar de forma feia
-                    const wordSpan = document.createElement('span');
-                    wordSpan.style.display = 'inline-block';
-                    wordSpan.style.whiteSpace = 'nowrap';
-                    
-                    for (let i = 0; i < wordStr.length; i++) {
-                        const charSpan = document.createElement('span');
-                        charSpan.className = 'split-char';
-                        charSpan.style.display = 'inline-block';
-                        charSpan.style.opacity = '0';
-                        charSpan.style.transform = 'translateX(-15px) rotateY(-20deg)';
-                        charSpan.textContent = wordStr[i];
-                        wordSpan.appendChild(charSpan);
-                    }
-                    fragment.appendChild(wordSpan);
+    
+    const walker = document.createTreeWalker(element, NodeFilter.SHOW_TEXT, null, false);
+    const textNodes = [];
+    while (walker.nextNode()) textNodes.push(walker.currentNode);
+    
+    textNodes.forEach(node => {
+        const text = node.nodeValue;
+        if (text.trim() === '') return;
+        
+        const fragment = document.createDocumentFragment();
+        const words = text.split(/(\s+)/);
+        
+        words.forEach(wordStr => {
+            if (wordStr.trim() === '') {
+                fragment.appendChild(document.createTextNode(wordStr));
+            } else {
+                const wordSpan = document.createElement('span');
+                wordSpan.style.display = 'inline-block';
+                wordSpan.style.whiteSpace = 'nowrap';
+                
+                for (let char of wordStr) {
+                    const charSpan = document.createElement('span');
+                    charSpan.className = 'split-char';
+                    charSpan.style.display = 'inline-block';
+                    charSpan.style.opacity = '0';
+                    charSpan.style.filter = 'blur(6px)'; // Efeito premium e seguro (sem transforms que quebram o layout)
+                    charSpan.textContent = char;
+                    wordSpan.appendChild(charSpan);
                 }
-            });
-            node.parentNode.replaceChild(fragment, node);
-        } else if (node.nodeType === 1 && node.nodeName !== 'BR') {
-            node.style.display = 'inline-block';
-            node.style.whiteSpace = 'nowrap'; // Impede tags como <em> de quebrarem ao meio
-            Array.from(node.childNodes).forEach(processNode);
-        }
-    };
-    Array.from(element.childNodes).forEach(processNode);
+                fragment.appendChild(wordSpan);
+            }
+        });
+        node.parentNode.replaceChild(fragment, node);
+    });
 }
 
 // ==========================================
@@ -137,14 +133,13 @@ export function initAbout() {
         scrubTl.to(label, { opacity: 1, y: 0, ease: 'power2.out' });
     }
 
-    // Título aparecendo letra por letra da esquerda para a direita (stagger)
+    // Título aparecendo letra por letra com efeito de foco (blur)
     if (chars.length > 0) {
         scrubTl.to(chars, {
             opacity: 1,
-            x: 0,
-            rotationY: 0,
+            filter: 'blur(0px)',
             stagger: 0.05,
-            ease: 'power3.out'
+            ease: 'power2.out'
         }, "-=0.3");
     }
 

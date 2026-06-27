@@ -11,7 +11,16 @@ import { initTestimonials } from './src/testimonials/testimonials.js';
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
-window.scrollTo(0, 0);
+
+window.addEventListener('beforeunload', () => {
+    window.scrollTo(0, 0);
+});
+
+window.addEventListener('load', () => {
+    setTimeout(() => {
+        window.scrollTo(0, 0);
+    }, 10);
+});
 
 // Inicialização segura do Preloader e componentes
 if (document.readyState === "loading") {
